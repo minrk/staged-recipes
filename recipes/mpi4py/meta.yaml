@@ -11,17 +11,20 @@ source:
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  script: pip install --no-deps .
   detect_binary_files_with_prefix: true
+  # TODO: build with msmpi when it works
+  skip: true  # [win]
 
 requirements:
   build:
     - python
-    - msmpi          # [win]
+    - pip
+    # - msmpi          # [win]
     - openmpi        # [unix]
   run:
     - python
-    - msmpi          # [win]
+    # - msmpi          # [win]
     - openmpi        # [unix]
 
 test:
@@ -44,3 +47,4 @@ extra:
   recipe-maintainers:
     - msarahan
     - ocefpaf
+    - minrk
