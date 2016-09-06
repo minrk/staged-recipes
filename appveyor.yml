@@ -39,11 +39,16 @@ artifacts:
 platform:
     - x64
 
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 install:
     # We don't need to build the example recipe.
     - cmd: rmdir recipes\example /s /q
     # Skip if we are not in a PR.
-    - cmd: if not defined APPVEYOR_PULL_REQUEST_NUMBER rmdir /q /s recipes
+    # - cmd: if not defined APPVEYOR_PULL_REQUEST_NUMBER rmdir /q /s recipes
     # Make sure the `recipes` directory exists if we removed it.
     - cmd: if not exist recipes mkdir recipes
 
