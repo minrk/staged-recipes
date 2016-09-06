@@ -1,4 +1,4 @@
-{% set version="1.10.3" %}
+{% set version="2.0.1" %}
 {% set minor_version=".".join(version.split(".")[:2]) %}
 
 package:
@@ -8,7 +8,7 @@ package:
 source:
   fn: openmpi-{{ version }}.tar.bz2
   url: http://www.open-mpi.org/software/ompi/v{{ minor_version }}/downloads/openmpi-{{ version }}.tar.bz2
-  sha1: a3355a5c1c96cf9298ef48061d9db8c2fbd014ea
+  sha1: cd1f825f2b94a97e78e4ae580544e9e3c56809f9
 
 build:
   number: 0
@@ -36,3 +36,4 @@ extra:
   recipe-maintainers:
     - msarahan
     - ocefpaf
+    - minrk
