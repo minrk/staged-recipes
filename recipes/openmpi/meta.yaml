@@ -15,11 +15,20 @@ build:
   skip: True   # [win]
   binary_relocation: true
   detect_binary_files_with_prefix: true
+  requires:
+    - gcc
+
+run:
+  requires:
+    - libgcc       # [linux]
+    - libgfortran  # [osx]
 
 test:
+  requires:
+    - gcc
   commands:
     - mpicc --help
-    - mpif90 --help  # [linux]
+    - mpif90 --help
 
 about:
   home: http://www.open-mpi.org/
