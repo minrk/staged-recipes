@@ -1,8 +1,13 @@
 INCLUDE_PATH="$PREFIX/include"
 LIBRARY_PATH="$PREFIX/lib"
 
+if [[ "$(uname)" == "Darwin" ]]; then
+  export CXXFLAGS="-std=c++11 -stdlib=libc++ $CXXFLAGS"
+fi
+
 export LDFLAGS="-Wl,-rpath,$LIBRARY_PATH $LDFLAGS"
 
+env
 
 mkdir build
 cd build
@@ -15,5 +20,5 @@ cmake \
   -DMSHR_ENABLE_VTK=0 \
   ..
 
-make -j${CPU_COUNT}
+make -j${CPU_COUNT} VERBOSE=1
 make install
