@@ -12,6 +12,7 @@ source:
   sha256: {{ sha256 }}
   patches:
     - python-executable.patch
+    - c++-std.patch
 
 build:
   number: 0
